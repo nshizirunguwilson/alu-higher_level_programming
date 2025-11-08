@@ -11,25 +11,25 @@ Usage Example:
 
 
 class Square:
-    """Defines the blueprint of a square.
-    Attribute:
-        size: An integer indicating the size of the square object.
-    """
+    """Defines a square with size and area calculation."""
 
     def __init__(self, size=0):
-        """An object constructor method.
-        Initiatilizes Square with size.
-        Arg:
-            size: A integer representing object size.
-                  Has a default value of 0.
-        """
-        self.__size = size
+        self.size = size  # invokes the setter for validation
 
     @property
     def size(self):
-        """Gets the size private attribute value.
-        Returns:
-            The size private attribute
-        """
+        """Retrieve the size of the square."""
         return self.__size
 
+    @size.setter
+    def size(self, value):
+        """Set the size of the square with validation."""
+        if not isinstance(value, int):
+            raise TypeError("size must be an integer")
+        if value < 0:
+            raise ValueError("size must be >= 0")
+        self.__size = value
+
+    def area(self):
+        """Calculate and return the area of the square."""
+        return self.__size ** 2
