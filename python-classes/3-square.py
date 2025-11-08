@@ -21,8 +21,8 @@ class Square:
         Initiatilizes Square with size.
         Arg:
             size: A integer representing object size.
-                  Has a default value of 0.
-        
+                Has a default value of 0.
+
         Raises:
             TypeError: if size is not an integer.
             ValueError: If size < 0.
