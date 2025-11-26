@@ -1,39 +1,22 @@
 #!/usr/bin/python3
-"""
-Script that deletes all State objects with a name containing the letter a
-from the database hbtn_0e_6_usa
-"""
+"""deletes all State objects with a name
+containing the letter a from the database hbtn_0e_6_usa"""
 import sys
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session
 from model_state import Base, State
 
-
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print("Usage: {} <mysql username> <mysql password> <database name>".format(sys.argv[0]))
-        sys.exit(1)
+    engine = create_engine("mysql+mysqldb://{}:{}@localhost/{}"
+                           .format(sys.argv[1], sys.argv[2], sys.argv[3]),
+                           pool_pre_ping=True)
+    Base.metadata.create_all(engine)
 
-    username = sys.argv[1]
-    password = sys.argv[2]
-    db_name = sys.argv[3]
+    session = Session(engine)
 
-    engine = create_engine(
-        f'mysql+mysqldb://{username}:{password}@localhost:3306/{db_name}',
-        pool_pre_ping=True
-    )
-
-    Base.metadata.create_all(engine)    
-
-    Session = sessionmaker(bind=engine)
-    session = Session()
-
-    # Query for State objects with a name containing the letter 'a'
-    # Using ilike for case-insensitive search
-    states_to_delete = session.query(State).filter(State.name.like('%a%')).all()
-
-    for state in states_to_delete:
-        session.delete(state)
+    records = session.query(State).filter(State.name.contains('a')).all()
+    for record in records:
+        session.delete(record)
 
     session.commit()
     session.close()
