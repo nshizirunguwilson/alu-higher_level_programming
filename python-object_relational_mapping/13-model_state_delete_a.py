@@ -14,7 +14,7 @@ if __name__ == "__main__":
 
     session = Session(engine)
 
-    records = session.query(State).filter(State.name.contains('a')).all()
+    records = session.query(State).filter(State.name.ilike('%a%')).all()
     for record in records:
         session.delete(record)
 
