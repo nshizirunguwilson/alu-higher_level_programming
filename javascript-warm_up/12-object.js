@@ -4,5 +4,5 @@ const myObject = {
   value: 12
 };
 console.log(myObject);
-myObject.append({ type: 'object', value: 89 });
+myObject.details = { type: 'object', value: 89 }
 console.log(myObject);
