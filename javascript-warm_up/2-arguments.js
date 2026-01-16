@@ -1,4 +1,4 @@
-#!usr/bin/node
+#!/usr/bin/node
 switch (process.argv.length) {
   case 2:
     console.log('No argument');

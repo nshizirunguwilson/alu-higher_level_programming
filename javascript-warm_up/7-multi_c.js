@@ -1,4 +1,4 @@
-#!bin/usr/node
+#!/bin/usr/node
 
 const occurances = parseInt(process.argv[2]);
 
