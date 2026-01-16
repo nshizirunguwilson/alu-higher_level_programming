@@ -3,7 +3,7 @@
 const squareSize = parseInt(process.argv[2]);
 
 if (squareSize) {
-  for (let i = 1; i < squareSize; i++) {
+  for (let i = 1; i <= squareSize; i++) {
     console.log('X'.repeat(squareSize));
   }
 } else if (num < 0) {
