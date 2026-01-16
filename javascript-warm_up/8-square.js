@@ -7,7 +7,7 @@ if (squareSize) {
     console.log('X'.repeat(squareSize));
   }
 } else if (num < 0) {
-  console.log();
+  console.log('Missing size');
 } else {
   console.log('Missing size');
 }
